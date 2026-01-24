@@ -1,0 +1,74 @@
+body.dark-mode {
+    background-color: #1a1a1a;
+    color: #fff;
+}
+
+.dark-mode .bg-primary {
+    background-color: #2c3e50 !important;
+}
+
+.dark-mode .resume-section {
+    background-color: #1a1a1a;
+}
+
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode .subheading {
+    color: #fff;
+}
+
+.dark-mode .text-primary {
+    color: #f39c12 !important;
+}
+
+.dark-mode .social-icon:hover {
+    background-color: #f39c12;
+}
+
+.dark-mode .nav-link {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.dark-mode .nav-link:hover,
+.dark-mode .nav-link:focus,
+.dark-mode .nav-link.active {
+    color: #fff;
+}
+
+#dark-mode-toggle .fa-sun {
+    display: none;
+}
+
+.dark-mode #dark-mode-toggle .fa-sun {
+    display: inline-block;
+}
+
+.dark-mode #dark-mode-toggle .fa-moon {
+    display: none;
+}
+
+#dark-mode-toggle {
+    cursor: pointer;
+}
+
+#dark-mode-toggle .fa-moon,
+#dark-mode-toggle .fa-sun {
+    transition: transform 0.4s ease-in-out;
+}
+
+.dark-mode #dark-mode-toggle .fa-sun {
+    transform: rotate(360deg);
+}
+
+.dark-mode #dark-mode-toggle .fa-moon {
+    transform: rotate(-360deg);
+}
+
+#dark-mode-toggle .fa-moon {
+    transform: rotate(0deg);
+}
+
+#dark-mode-toggle .fa-sun {
+    transform: rotate(0deg);
+}
