@@ -19,11 +19,11 @@ body.dark-mode {
 }
 
 .dark-mode .text-primary {
-    color: #f39c12 !important;
+    color: #5cb85c !important;
 }
 
 .dark-mode .social-icon:hover {
-    background-color: #f39c12;
+    background-color: #5cb85c;
 }
 
 .dark-mode .nav-link {
@@ -72,9 +72,9 @@ body.dark-mode {
 #dark-mode-toggle .fa-sun {
     transform: rotate(0deg);
 }.dark-mode .resume-section-content h3 a {
-    color: #f39c12; /* Dark mode primary color */
+    color: #5cb85c; /* Dark mode primary color */
 }
 
 .dark-mode .resume-section-content h3 a:hover {
-    color: #e67e22; /* Darker shade for hover in dark mode */
+    color: #449d44; /* Darker shade for hover in dark mode */
 }
