@@ -1,54 +1,45 @@
-/*!
-* Start Bootstrap - Resume v7.0.6 (https://startbootstrap.com/theme/resume)
-* Copyright 2013-2023 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-resume/blob/master/LICENSE)
-*/
-//
-// Scripts
-// 
+// Navbar scroll opacity
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+});
 
-window.addEventListener('DOMContentLoaded', event => {
+// Mobile nav toggle
+const navToggle = document.getElementById('navToggle');
+const navLinks  = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
 
-    // Activate Bootstrap scrollspy on the main nav element
-    const sideNav = document.body.querySelector('#sideNav');
-    if (sideNav) {
-        new bootstrap.ScrollSpy(document.body, {
-            target: '#sideNav',
-            rootMargin: '0px 0px -40%',
-        });
-    };
+navLinks.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('open'));
+});
 
-    // Collapse responsive navbar when toggler is visible
-    const navbarToggler = document.body.querySelector('.navbar-toggler');
-    const responsiveNavItems = [].slice.call(
-        document.querySelectorAll('#navbarResponsive .nav-link')
-    );
-    responsiveNavItems.map(function (responsiveNavItem) {
-        responsiveNavItem.addEventListener('click', () => {
-            if (window.getComputedStyle(navbarToggler).display !== 'none') {
-                navbarToggler.click();
-            }
-        });
-    });
+// Active nav link via IntersectionObserver
+const sections    = document.querySelectorAll('section[id]');
+const navLinkEls  = document.querySelectorAll('.nav-link');
 
-    // Dark mode toggle
-    const darkModeToggle = document.getElementById('dark-mode-toggle');
-    const body = document.body;
-    const darkModeClass = 'dark-mode';
-
-    // Check for saved dark mode preference
-    if (localStorage.getItem('darkMode') === 'enabled') {
-        body.classList.add(darkModeClass);
-    }
-
-    darkModeToggle.addEventListener('click', () => {
-        body.classList.toggle(darkModeClass);
-        // Save preference to local storage
-        if (body.classList.contains(darkModeClass)) {
-            localStorage.setItem('darkMode', 'enabled');
-        } else {
-            localStorage.setItem('darkMode', 'disabled');
+const activeObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            navLinkEls.forEach(l => l.classList.remove('active'));
+            const match = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+            if (match) match.classList.add('active');
         }
     });
+}, { rootMargin: '-40% 0px -55% 0px' });
 
+sections.forEach(s => activeObserver.observe(s));
+
+// Scroll-reveal for cards and other elements
+const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+            setTimeout(() => entry.target.classList.add('visible'), i * 80);
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.card, .info-item, .interest-item, .award-item').forEach(el => {
+    el.classList.add('reveal');
+    revealObserver.observe(el);
 });
